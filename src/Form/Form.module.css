@@ -1,0 +1,22 @@
+.Form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  align-items: stretch;
+
+}
+.label{}
+.input{border: 1px solid black;
+border-radius: 10px;
+outline: none;
+margin-left: 20px;
+}
+.input:focus{
+    padding-left: 15px;
+    border:1px solid blue;
+    border-radius: 10px;
+}
+.formButton{
+    /* width: 50%; */
+    border-radius: 30px;
+}
