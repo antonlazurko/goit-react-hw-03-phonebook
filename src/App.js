@@ -8,7 +8,6 @@ class App extends Component {
     contacts: [],
     filter: '',
   };
-
   addContact = contact => {
     if (this.state.contacts.find(item => item.name === contact.name)) {
       alert(`${contact.name} is already in contacts.`);
@@ -35,8 +34,22 @@ class App extends Component {
       contacts: contacts.filter(contact => contact.id !== contactId),
     }));
   };
-
+  componentDidMount() {
+    const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+  }
   render() {
+    console.log('App render');
     const { filter } = this.state;
     const visibleContacts = this.getVisibleContacts();
 
